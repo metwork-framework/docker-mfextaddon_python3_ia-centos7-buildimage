@@ -7,6 +7,7 @@ baseurl=http://metwork-framework.org/pub/metwork/continuous_integration/rpms/${B
 gpgcheck=0\n\
 enabled=1\n\
 metadata_expire=0\n" >/etc/yum.repos.d/metwork.repo
+ARG CACHEBUST=0
 RUN yum -y install metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_devtools 2>/dev/null |sort |md5sum |awk '{print $1;}' > /tmp/yum_cache
 
 FROM metwork/mfext-centos7-buildimage:${BRANCH}
