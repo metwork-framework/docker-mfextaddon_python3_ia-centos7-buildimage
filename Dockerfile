@@ -9,7 +9,7 @@ enabled=1\n\
 metadata_expire=0\n" >/etc/yum.repos.d/metwork.repo
 ARG CACHEBUST=0
 RUN yum clean all
-RUN yum --disablerepo=* --enablerepo=metwork_${BRANCH} -q list metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_devtools 2>/dev/null |sort |md5sum |awk '{print $1;}' > /tmp/yum_cache
+RUN yum --disablerepo=* --enablerepo=metwork_${BRANCH} -q list metwork-mfext* 2>/dev/null |sort |md5sum |awk '{print $1;}' > /tmp/yum_cache
 
 FROM metwork/mfext-centos7-buildimage:${BRANCH}
 ARG BRANCH
