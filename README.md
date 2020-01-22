@@ -27,6 +27,7 @@
 
 
 
+
 ## Reference documentation
 
 - (for **master (development)** version), see [this dedicated site](http://metwork-framework.org/pub/metwork/continuous_integration/docs/master/docker-mfextaddon_python3_ia-centos7-buildimage/) for reference documentation.
@@ -47,6 +48,8 @@ See [this document](.metwork-framework/install_a_metwork_package.md).
 ## Configuration guide
 
 See [this document](.metwork-framework/configure_a_metwork_package.md).
+
+
 
 
 
