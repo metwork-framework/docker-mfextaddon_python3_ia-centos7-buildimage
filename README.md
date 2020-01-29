@@ -20,37 +20,14 @@
 
 
 
+## Quickstart, installation guide...
 
-
-
-
-
-
-
-
-## Reference documentation
-
-- (for **master (development)** version), see [this dedicated site](http://metwork-framework.org/pub/metwork/continuous_integration/docs/master/docker-mfextaddon_python3_ia-centos7-buildimage/) for reference documentation.
-- (for **latest released stable** version), see [this dedicated site](http://metwork-framework.org/pub/metwork/releases/docs/stable/docker-mfextaddon_python3_ia-centos7-buildimage/) for reference documentation.
+Please consult the [reference documentation](http://metwork-framework.org/pub/metwork/continuous_integration/docs/master/docker-mfextaddon_python3_ia-centos7-buildimage/).
 
 For very specific use cases, you might be interested in
 [reference documentation for integration branch](http://metwork-framework.org/pub/metwork/continuous_integration/docs/integration/docker-mfextaddon_python3_ia-centos7-buildimage/).
 
 And if you are looking for an old released version, you can search [here](http://metwork-framework.org/pub/metwork/releases/docs/).
-
-
-
-## Installation guide
-
-See [this document](.metwork-framework/install_a_metwork_package.md).
-
-
-## Configuration guide
-
-See [this document](.metwork-framework/configure_a_metwork_package.md).
-
-
-
 
 
 ## Contributing guide
