@@ -17,4 +17,4 @@ COPY --from=yum_cache /etc/yum.repos.d/metwork.repo /etc/yum.repos.d/
 COPY --from=yum_cache /tmp/yum_cache .
 RUN yum clean all
 RUN yum -y install metwork-mfext-layer-python3_scientific metwork-mfext-layer-python3_devtools
-RUN wget -O bazel-0.25.2-installer-linux-x86_64.sh https://github.com/bazelbuild/bazel/releases/download/0.25.2/bazel-0.25.2-installer-linux-x86_64.sh && chmod +x bazel-0.25.2-installer-linux-x86_64.sh && ./bazel-0.25.2-installer-linux-x86_64.sh
+RUN wget -O bazel-3.4.1-installer-linux-x86_64.sh https://github.com/bazelbuild/bazel/releases/download/3.4.1/bazel-3.4.1-installer-linux-x86_64.sh && chmod +x bazel-3.4.1-installer-linux-x86_64.sh && ./bazel-3.4.1-installer-linux-x86_64.sh
