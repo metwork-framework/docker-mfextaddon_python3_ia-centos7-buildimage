@@ -3,7 +3,7 @@
 #set -eu
 set -x
 
-docker pull $BRANCH
+docker pull $TAG_BRANCH
 HASH_BEFORE=`docker images -q $TAG_BRANCH` 
 if [ "$BRANCH" != "master" ]; then
     docker build -t $TAG_BRANCH --build-arg BRANCH=$BRANCH --build-arg CACHEBUST=$CACHE_BUST .
