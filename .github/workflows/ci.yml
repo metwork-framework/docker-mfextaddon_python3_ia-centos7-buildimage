@@ -36,7 +36,7 @@ jobs:
           cat ./Dockerfile
 
       - name: Build and Publish Image
-        uses: thebaptiste/docker.image@master
+        uses: thebaptiste/docker.image@metwork
         with:
           image_name: metwork/mfextaddon_python3_ia-centos7-buildimage
           image_tag: ${{ steps.SetVariables.outputs.branch }}
