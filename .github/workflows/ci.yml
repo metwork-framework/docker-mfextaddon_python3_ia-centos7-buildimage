@@ -36,12 +36,12 @@ jobs:
           cat ./Dockerfile
 
       - name: Build and Publish Image
-        uses: tinact/docker.image@master
+        uses: thebaptiste/docker.image@master
         with:
           image_name: metwork/mfextaddon_python3_ia-centos7-buildimage
           image_tag: ${{ steps.SetVariables.outputs.branch }}
           build_args: BRANCH=${{ steps.SetVariables.outputs.branch }},CACHEBUST=${{ github.run_number }}
-          registry_username: ${{ secrets.DOCKER_USERNAME2 }}
+          registry_username: ${{ secrets.DOCKER_USERNAME }}
           registry_password: ${{ secrets.DOCKER_PASSWORD }}
           dockerfile: Dockerfile
 
