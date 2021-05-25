@@ -43,7 +43,7 @@ jobs:
           build_args: BRANCH=${{ steps.SetVariables.outputs.branch }},CACHEBUST=${{ github.run_number }}
           registry_username: ${{ secrets.DOCKER_USERNAME }}
           registry_password: ${{ secrets.DOCKER_PASSWORD }}
-          dockerfile: ./Dockerfile
+          dockerfile: Dockerfile
 
 
       - name: dispatch mfextaddon_python3_ia
