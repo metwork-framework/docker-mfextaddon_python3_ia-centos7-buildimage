@@ -32,7 +32,8 @@ jobs:
       - name: debug env
         run: |
           env
-          echo "\nDockerfile"
+          echo "\nDockerfile\n"
+          docker info
           cat ./Dockerfile
 
       - name: Build and Publish Image
