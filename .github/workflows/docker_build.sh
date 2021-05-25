@@ -3,7 +3,6 @@
 #set -eu
 set -x
 
-docker login -p ${{ secrets.DOCKER_PASSWORD }} -u ${{ secrets.DOCKER_USERNAME }}
 docker pull $BRANCH
 HASH_BEFORE=`docker images -q $TAG_BRANCH` 
 if [ "$BRANCH" != "master" ]; then
