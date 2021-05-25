@@ -3,12 +3,12 @@
 #set -eu
 set -x
 
-docker pull $TAG_BRANCH
+docker pull $TAG_BRANCH 2>/dev/null
 HASH_BEFORE=`docker images -q $TAG_BRANCH` 
 if [ "$BRANCH" != "master" ]; then
-    docker build -t $TAG_BRANCH --build-arg BRANCH=$BRANCH --build-arg CACHEBUST=$CACHE_BUST .
+    docker build -t $TAG_BRANCH --build-arg BRANCH=$BRANCH --build-arg CACHEBUST=$CACHEBUST .
 else
-    docker build -t $TAG_BRANCH -t $TAG_LATEST --build-arg BRANCH=$BRANCH --build-arg CACHEBUST=$CACHE_BUST .
+    docker build -t $TAG_BRANCH -t $TAG_LATEST --build-arg BRANCH=$BRANCH --build-arg CACHEBUST=$CACHEBUST .
 fi
 HASH_AFTER=`docker images -q $TAG_BRANCH`
 if [ "${HASH_BEFORE}" == "${HASH_AFTER}" ]; then
