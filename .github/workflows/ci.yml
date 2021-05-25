@@ -54,7 +54,7 @@ jobs:
         if: ${{ steps.SetVariables.outputs.branch != 'master' }}
         run: |
           docker push ${{ steps.SetVariables.outputs.tag_branch }}
-      name: docker push master
+      - name: docker push master
         if: ${{ steps.SetVariables.outputs.branch == 'master' }}
         run: |
           docker push ${{ steps.SetVariables.outputs.tag_branch }}
