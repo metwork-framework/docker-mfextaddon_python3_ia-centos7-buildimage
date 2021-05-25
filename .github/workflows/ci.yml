@@ -34,27 +34,15 @@ jobs:
           env
           echo "Dockerfile"
           cat ./Dockerfile
-      - name: docker build and push not master
+      - name: docker build and push
         id: DockerStep
+        env: 
+          BRANCH: ${{ steps.SetVariables.outputs.tag_branch }}
+          CACHEBUST: ${{ github.run_number }}
+          TAG_BRANCH: ${{ steps.SetVariables.outputs.tag_branch }}
+          TAG_LATEST: ${{ steps.SetVariables.outputs.tag_latest }}
         run: |
-          docker login -p ${{ secrets.DOCKER_PASSWORD }} -u ${{ secrets.DOCKER_USERNAME }}
-          docker pull ${{ steps.SetVariables.outputs.tag_branch }}
-          HASH_BEFORE=`docker images -q ${{ steps.SetVariables.outputs.tag_branch }}` 
-          if ${{ steps.SetVariables.outputs.branch != 'master' }}; then
-            docker build -t ${{ steps.SetVariables.outputs.tag_branch }} --build-arg BRANCH=${{ steps.SetVariables.outputs.branch }} --build-arg CACHEBUST=${{ github.run_number }} .
-          else
-            docker build -t ${{ steps.SetVariables.outputs.tag_branch }} -t ${{ steps.SetVariables.outputs.tag_latest }} --build-arg BRANCH=${{ steps.SetVariables.outputs.branch }} --build-arg CACHEBUST=${{ github.run_number }} .
-          fi
-          HASH_AFTER=`docker images -q ${{ steps.SetVariables.outputs.tag_branch }}`
-          if test "$${HASH_BEFORE}" = "$${HASH_AFTER}"; then
-            echo "::set-output name=dispatch_bypass::true"
-          else
-            echo "::set-output name=dispatch_bypass::false"
-            docker push ${{ steps.SetVariables.outputs.tag_branch }}
-            if ${{ steps.SetVariables.outputs.branch == 'master' }}; then
-              docker push ${{ steps.SetVariables.outputs.tag_latest }}
-            fi
-          fi
+          ${WORKFLOW_SCRIPTS_DIR}/docker_build.sh
 
 
 
