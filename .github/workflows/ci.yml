@@ -40,10 +40,24 @@ jobs:
       - name: docker pull image
         run: |
           docker pull ${{ steps.SetVariables.outputs.tag_branch }}
-          HASH_BEFORE=`docker images -q ${{ steps.SetVariables.outputs.tag_branch }}
+          HASH_BEFORE=`docker images -q ${{ steps.SetVariables.outputs.tag_branch }}`
       - name: docker build
+        if: ${{ steps.SetVariables.outputs.branch != 'master' }}
         run: |
           docker build -t ${{ steps.SetVariables.outputs.tag_branch }} --build-arg BRANCH=${{ steps.SetVariables.outputs.branch }} --build-arg CACHEBUST=${{ github.run_number }} .
-          
+          HASH_AFTER=`docker images -q ${{ steps.SetVariables.outputs.tag_branch }}`
+      - name: docker build master
+        if: ${{ steps.SetVariables.outputs.branch == 'master' }}
+        run: |
+          docker build -t ${{ steps.SetVariables.outputs.tag_branch }} -t ${{ steps.SetVariables.outputs.tag_latest }} --build-arg BRANCH=${{ steps.SetVariables.outputs.branch }} --build-arg CACHEBUST=${{ github.run_number }} .
+      - name: docker push
+        if: ${{ steps.SetVariables.outputs.branch != 'master' }}
+        run: |
+          docker push ${{ steps.SetVariables.outputs.tag_branch }}
+      name: docker push master
+        if: ${{ steps.SetVariables.outputs.branch == 'master' }}
+        run: |
+          docker push ${{ steps.SetVariables.outputs.tag_branch }}
+          docker push ${{ steps.SetVariables.outputs.tag_latest }}
           
       
