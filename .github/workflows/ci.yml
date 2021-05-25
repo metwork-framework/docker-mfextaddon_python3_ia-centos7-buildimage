@@ -37,5 +37,13 @@ jobs:
       - name: Login to DockerHub
         run: |
           docker login -p ${{ secrets.DOCKER_PASSWORD }} -u ${{ secrets.DOCKER_USERNAME }}
+      - name: docker pull image
+        run: |
+          docker pull ${{ steps.SetVariables.outputs.tag_branch }}
+          HASH_BEFORE=`docker images -q ${{ steps.SetVariables.outputs.tag_branch }}
+      - name: docker build
+        run: |
+          docker build -t ${{ steps.SetVariables.outputs.tag_branch }} --build-arg BRANCH=${{ steps.SetVariables.outputs.branch }} --build-arg CACHEBUST=${{ github.run_number }} .
+          
           
       
