@@ -15,6 +15,7 @@ env:
     WORKFLOW_SCRIPTS_DIR: .github/workflows
     DOCKER_WORKFLOW_SCRIPTS_DIR: /src/.github/workflows
     PAYLOAD_BRANCH: ${{ github.event.client_payload.branch}}
+    PAYLOAD_OS: ${{ github.event.client_payload.os}}
 
 jobs:
   ci_build:
@@ -49,6 +50,8 @@ jobs:
 
 
 
+
+
       - name: dispatch mfextaddon_python3_ia
         if: ${{ github.event_name != 'pull_request' && steps.SetVariables.outputs.branch != 'null' && steps.DockerStep.outputs.dispatch_bypass == 'false' }}
         uses: peter-evans/repository-dispatch@v1
@@ -56,4 +59,5 @@ jobs:
           token: ${{ secrets.METWORK_ACCESS_TOKEN }}
           repository: metwork-framework/mfextaddon_python3_ia
           event-type: metwork-trigger-${{ steps.SetVariables.outputs.branch }}
-          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}"}'
+          client-payload: '{"branch": "${{ steps.SetVariables.outputs.branch }}", "os": "centos7"}'
+
